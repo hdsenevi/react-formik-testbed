@@ -1,14 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import { withFormik } from 'formik';
-import Yup from 'yup';
+import './App.css'
+import { withFormik } from 'formik'
+import Yup from 'yup'
 
 function App({
   values,
   handleChange,
+  handleSubmit,
 }) {
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
         type="email"
         name="email"
@@ -23,8 +23,8 @@ function App({
         value={values.password} 
         onChange={handleChange}
       />
-      
-    </div>
+      <button>Submit</button>
+    </form>
   );
 }
 
@@ -34,6 +34,9 @@ const FormikApp = withFormik({
       email: email || 'test text',
       password: password || "",
     }
+  },
+  handleSubmit(values) {
+    console.log(values)
   }
 })(App)
 
