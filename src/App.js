@@ -1,14 +1,16 @@
 import './App.css'
-import { withFormik } from 'formik'
+import {
+  withFormik,
+  Form
+} from 'formik'
 import Yup from 'yup'
 
 function App({
   values,
   handleChange,
-  handleSubmit,
 }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <Form>
       <input
         type="email"
         name="email"
@@ -24,7 +26,7 @@ function App({
         onChange={handleChange}
       />
       <button>Submit</button>
-    </form>
+    </Form>
   );
 }
 
