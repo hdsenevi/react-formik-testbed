@@ -1,7 +1,8 @@
 import './App.css'
 import {
   withFormik,
-  Form
+  Form,
+  Field,
 } from 'formik'
 import Yup from 'yup'
 
@@ -11,30 +12,31 @@ function App({
 }) {
   return (
     <Form>
-      <input
+      <Field
         type="email"
         name="email"
         placeholder="Email"
-        value={values.email} 
-        onChange={handleChange}
       />
-      <input
+      <Field
         type="password"
         name="password"
         placeholder="Password"
-        value={values.password} 
-        onChange={handleChange}
       />
+      <label>
+        <Field type="checkbox" name="newsletter" checked={values.newsletter} />
+        Join our newsletter
+      </label>
       <button>Submit</button>
     </Form>
   );
 }
 
 const FormikApp = withFormik({
-  mapPropsToValues({email, password}) {
+  mapPropsToValues({email, password, newsletter}) {
     return {
       email: email || 'test text',
       password: password || "",
+      newsletter: newsletter || false,
     }
   },
   handleSubmit(values) {
