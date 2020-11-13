@@ -10,6 +10,7 @@ function App({
   values,
   errors,
   touched,
+  isSubmitting,
 }) {
   return (
     <Form>
@@ -37,7 +38,7 @@ function App({
         <option value="free">Free</option>
         <option value="premium">Premium</option>
       </Field>
-      <button>Submit</button>
+      <button disabled={isSubmitting}>Submit</button>
     </Form>
   );
 }
@@ -67,6 +68,7 @@ const FormikApp = withFormik({
       } else {
         resetForm()
       }
+      setSubmitting(false)
     }, 2000)
     console.log(values)
   }
