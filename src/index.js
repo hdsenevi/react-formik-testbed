@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App email="sha@test.com"/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

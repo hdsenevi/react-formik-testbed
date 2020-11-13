@@ -50,17 +50,24 @@ const FormikApp = withFormik({
     plan,
   }) {
     return {
-      email: email || 'test text',
+      email: email || '',
       password: password || "",
       newsletter: newsletter || false,
       plan: plan || 'free',
     }
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().min(9).required(),
+    email: Yup.string().email('Email not valid').required('Email is required'),
+    password: Yup.string().min(9, 'Password must be 9 character or longer').required('Password is required'),
   }),
-  handleSubmit(values) {
+  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    setTimeout(() => {
+      if (values.email === 'sha@test.com') {
+        setErrors({ email: 'That email is already taken' })
+      } else {
+        resetForm()
+      }
+    }, 2000)
     console.log(values)
   }
 })(App)
